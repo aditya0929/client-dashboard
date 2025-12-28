@@ -109,7 +109,7 @@ export async function generateStrategyAction(
             return { success: true, data };
         } catch (jsonError) {
             console.error("HF SDK Error: Failed to parse JSON", text);
-            return { success: false, error: "AI returned invalid JSON. Please try again." };
+            return { success: false, error: "AI returned invalid JSON (v2 Check Logs). Please search 'HF SDK Error' in Vercel logs." };
         }
 
     } catch (error: any) {
