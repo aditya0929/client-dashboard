@@ -96,6 +96,14 @@ export async function generateStrategyAction(
         // Clean up potential markdown formatting specific to some models
         text = text.replace(/```json/g, "").replace(/```/g, "").trim();
 
+        // Find the first '{' and last '}' to extract the JSON object
+        const firstOpen = text.indexOf('{');
+        const lastClose = text.lastIndexOf('}');
+
+        if (firstOpen !== -1 && lastClose !== -1 && lastClose > firstOpen) {
+            text = text.substring(firstOpen, lastClose + 1);
+        }
+
         try {
             const data = JSON.parse(text) as StrategyData;
             return { success: true, data };
